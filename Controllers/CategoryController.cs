@@ -47,15 +47,6 @@ namespace CodeFirstApproach.Controllers
             return RedirectToAction("Index");
         }
 
-        //get delete
-        //[HttpGet]
-        //public ActionResult Delete(int id)
-        //{
-        //    var categoryRow = db.Categories.Where(model => model.CategoryId == id).FirstOrDefault();
-        //    return View(categoryRow);
-        //}
-
-        //post delete
         [HttpGet]
         public ActionResult Delete(int id)
         {
