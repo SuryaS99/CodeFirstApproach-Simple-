@@ -1,0 +1,39 @@
+﻿@model  List<CodeFirstApproach.Models.ProductDto>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Category</h4>
+    <hr />
+
+    <table border="1" style="text-align:center;width:50em; height:8em;">
+        <tr>
+            <th style="text-align:center;">Product Name</th>
+            
+            <th style="text-align:center;">Category Name</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td style="font-size:15px;">@item.ProductName</td>
+        
+
+        <td style="font-size:15px;">@item.CategoryName</td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit","Products")
+        </td>*@
+    </tr>
+        }
+
+
+    </table>
+
+</div>
+<br />
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

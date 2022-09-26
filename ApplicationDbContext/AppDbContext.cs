@@ -9,7 +9,7 @@ namespace CodeFirstApproach.ApplicationDbContext
 {
     public class AppDbContext:DbContext
     {
-        public AppDbContext():base("CatDB")
+        public AppDbContext():base("CatD")
         {
 
         }

@@ -9,6 +9,9 @@ using System.Web.Mvc;
 
 namespace CodeFirstApproach.Controllers
 {
+    
+
+
     public class CategoryController : Controller
     {
         AppDbContext db = new AppDbContext();
@@ -31,7 +34,7 @@ namespace CodeFirstApproach.Controllers
         {
             db.Categories.Add(c);
             db.SaveChanges();
-            return View();
+            return RedirectToAction("Index");
         }
         public ActionResult Edit(int id)
         {
@@ -55,8 +58,42 @@ namespace CodeFirstApproach.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        
+
+        public ActionResult Active()
+        {
+            
+            return RedirectToAction("Index","Products");
+        }
+        [HttpGet]
+        public ActionResult Deactive(string checkbox)
+        {
+            
+              return RedirectToAction("Index", "Products");
+        }
+
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            var DetailsById = db.Products.Include(c => c.Category)
+                .Where(model => model.CategoryId == id && model.Category.IsActive == true)
+                .Select(x => new ProductDto
+                {
+                    ProductId = x.ProductId,
+                    ProductName = x.ProductName,
+                    CategoryName = x.Category.Name,
+                    CategoryId = x.CategoryId
+                }).ToList();
+
+            return View(DetailsById);
+        }
+
+
+
+
+
+
 
 
     }
+    
 }

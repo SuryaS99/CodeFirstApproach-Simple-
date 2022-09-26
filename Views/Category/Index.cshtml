@@ -14,6 +14,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
         <th></th>
     </tr>
 
@@ -23,8 +26,29 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CategoryId }) |
-            @*@Html.ActionLink("Details", "Details", new { id=item.CategoryId }) |*@
+            @Html.DisplayFor(modelItem => item.IsActive)
+            
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.CategoryId })|
+            @if (item.IsActive == true)
+            {
+                @Html.ActionLink("Deactive", "Deactive", new
+           {
+              @class = " btn btn - danger btn - sm disabled"
+                })
+
+
+            }
+            else
+            {
+                @Html.ActionLink("Active", "Active", new
+          {
+             @class = " btn btn - success ", @name="Checked"
+                })
+            }
+            |
             @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId })
         </td>
     </tr>

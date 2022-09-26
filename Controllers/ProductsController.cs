@@ -12,14 +12,17 @@ namespace CodeFirstApproach.Controllers
     public class ProductsController : Controller
     {
         AppDbContext db = new AppDbContext();
-        //private object quot;
-        //public object Id { get; set; }
-        // GET: Products
-        public ActionResult Index()
+        
+        public ActionResult Index(string pData)
         {
-            var prct = db.Products.ToList();
+            var prct = db.Products.Include(c => c.Category).Where(x => x.Category.IsActive == true).ToList();
+            
             return View(prct);
+            
         }
+        
+
+
         //get create
         public ActionResult Create()
         {

@@ -108,13 +108,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202209211035040_addedTable.cs" />
-    <Compile Include="Migrations\202209211035040_addedTable.Designer.cs">
-      <DependentUpon>202209211035040_addedTable.cs</DependentUpon>
+    <Compile Include="Migrations\202209260507042_Category.cs" />
+    <Compile Include="Migrations\202209260507042_Category.Designer.cs">
+      <DependentUpon>202209260507042_Category.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -122,12 +123,13 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
-    <Content Include="Views\Category\Create.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
-    <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Category\Create.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\Category\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -139,8 +141,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202209211035040_addedTable.resx">
-      <DependentUpon>202209211035040_addedTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202209260507042_Category.resx">
+      <DependentUpon>202209260507042_Category.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

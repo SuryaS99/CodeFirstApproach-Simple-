@@ -3,7 +3,7 @@ namespace CodeFirstApproach.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class addedTable : DbMigration
+    public partial class Category : DbMigration
     {
         public override void Up()
         {
@@ -13,6 +13,7 @@ namespace CodeFirstApproach.Migrations
                     {
                         CategoryId = c.Int(nullable: false, identity: true),
                         Name = c.String(),
+                        IsActive = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.CategoryId);
             

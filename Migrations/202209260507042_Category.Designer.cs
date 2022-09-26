@@ -7,13 +7,13 @@ namespace CodeFirstApproach.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class addedTable : IMigrationMetadata
+    public sealed partial class Category : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addedTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Category));
         
         string IMigrationMetadata.Id
         {
-            get { return "202209211035040_addedTable"; }
+            get { return "202209260507042_Category"; }
         }
         
         string IMigrationMetadata.Source
