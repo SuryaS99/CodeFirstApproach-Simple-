@@ -59,16 +59,22 @@ namespace CodeFirstApproach.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Active()
+        public ActionResult Active(int id)
         {
+            var act = db.Categories.Single(c => c.CategoryId == id);
+            act.IsActive=true;
+            db.SaveChanges();
+            return RedirectToAction("Index", "Products");
             
-            return RedirectToAction("Index","Products");
+            
         }
-        [HttpGet]
-        public ActionResult Deactive(string checkbox)
+       
+        public ActionResult Deactive(int id)
         {
-            
-              return RedirectToAction("Index", "Products");
+            var deact = db.Categories.Single(c => c.CategoryId == id);
+            deact.IsActive = false;
+            db.SaveChanges();
+            return RedirectToAction("Index", "Products");
         }
 
         [HttpGet]

@@ -31,25 +31,28 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.CategoryId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.CategoryId })|
-            @if (item.IsActive == true)
+            @Html.ActionLink("Details", "Details", new { id = item.CategoryId })|            |
+            @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId })
+        </td>
+        <td>
+             @if (item.IsActive == true)
             {
                 @Html.ActionLink("Deactive", "Deactive", new
            {
-              @class = " btn btn - danger btn - sm disabled"
-                })
+               id = item.CategoryId,
+               @class = " btn btn - danger btn - sm disabled"
+           })
 
 
             }
             else
             {
                 @Html.ActionLink("Active", "Active", new
-          {
-             @class = " btn btn - success ", @name="Checked"
-                })
+           {
+               id = item.CategoryId,
+               @class = " btn btn - success ", @name="Checked"
+           })
             }
-            |
-            @Html.ActionLink("Delete", "Delete", new { id = item.CategoryId })
         </td>
     </tr>
 }
