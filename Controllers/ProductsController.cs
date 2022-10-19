@@ -19,7 +19,7 @@ namespace CodeFirstApproach.Controllers
             db = new AppDbContext();
         }
         
-        public ActionResult Index(string pData)
+        public ActionResult Index()
         {
             var prct = db.Products.Include(c => c.Category).Where(x => x.Category.IsActive == true).ToList();
             

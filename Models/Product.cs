@@ -12,6 +12,7 @@ namespace CodeFirstApproach.Models
         [Key]
         public int ProductId { get; set; }
 
+
         [Display(Name ="Product Name")]
         public string ProductName { get; set; }
 
