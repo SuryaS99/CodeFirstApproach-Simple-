@@ -11,10 +11,15 @@ namespace CodeFirstApproach.Models
     {
         [Key]
         public int ProductId { get; set; }
+
+        [Display(Name ="Product Name")]
         public string ProductName { get; set; }
 
+
+        
         [ForeignKey("CategoryId")]
-        public virtual Category Category { get; set; }       
+        
+        public virtual Category Category { get; set; }
         public virtual int CategoryId { get; set; }
     }
 }

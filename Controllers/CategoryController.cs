@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -14,12 +15,19 @@ namespace CodeFirstApproach.Controllers
 
     public class CategoryController : Controller
     {
-        AppDbContext db = new AppDbContext();
+        //AppDbContext db = new AppDbContext();
+
+        private AppDbContext db;
+        public CategoryController()
+        {
+            db = new AppDbContext();
+        }
+
         // GET: Category
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
 
-            var category = db.Categories.ToList();
+            var category = await db.Categories.ToListAsync();
 
             return View(category);
         }
@@ -30,57 +38,57 @@ namespace CodeFirstApproach.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Category c)
+        public async Task<ActionResult> Create(Category c)
         {
             db.Categories.Add(c);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            var row = db.Categories.Where(model => model.CategoryId == id).FirstOrDefault();
+            var row =await db.Categories.Where(model => model.CategoryId == id).FirstOrDefaultAsync();
             return View(row);
         }
         //post
         [HttpPost]
-        public ActionResult Edit(Category c)
+        public async Task<ActionResult> Edit(Category c)
         {
             db.Entry(c).State = EntityState.Modified;
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
         [HttpGet]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var categoryRow = db.Categories.Where(model => model.CategoryId == id).FirstOrDefault();
+            var categoryRow =await db.Categories.Where(model => model.CategoryId == id).FirstOrDefaultAsync();
             db.Entry(categoryRow).State = EntityState.Deleted;
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
-        public ActionResult Active(int id)
+        public async Task<ActionResult> Active(int id)
         {
             var act = db.Categories.Single(c => c.CategoryId == id);
             act.IsActive=true;
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return RedirectToAction("Index", "Products");
             
             
         }
        
-        public ActionResult Deactive(int id)
+        public async Task<ActionResult> Deactive(int id)
         {
             var deact = db.Categories.Single(c => c.CategoryId == id);
             deact.IsActive = false;
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return RedirectToAction("Index", "Products");
         }
 
         [HttpGet]
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            var DetailsById = db.Products.Include(c => c.Category)
+            var DetailsById =await db.Products.Include(c => c.Category)
                 .Where(model => model.CategoryId == id && model.Category.IsActive == true)
                 .Select(x => new ProductDto
                 {
@@ -88,7 +96,7 @@ namespace CodeFirstApproach.Controllers
                     ProductName = x.ProductName,
                     CategoryName = x.Category.Name,
                     CategoryId = x.CategoryId
-                }).ToList();
+                }).ToListAsync();
 
             return View(DetailsById);
         }

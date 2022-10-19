@@ -11,7 +11,13 @@ namespace CodeFirstApproach.Controllers
 {
     public class ProductsController : Controller
     {
-        AppDbContext db = new AppDbContext();
+        //AppDbContext db = new AppDbContext();
+        private AppDbContext db;
+
+        public ProductsController()
+        {
+            db = new AppDbContext();
+        }
         
         public ActionResult Index(string pData)
         {
@@ -76,6 +82,13 @@ namespace CodeFirstApproach.Controllers
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", id);
             return View(Delrow);
+        }
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name");
+            var Detailrow = db.Products.Where(model => model.ProductId == id).FirstOrDefault();
+            return View(Detailrow);
         }
         
     }
